@@ -2,33 +2,30 @@ import React, { useState } from 'react';
 import {
   Box,
   CssBaseline,
-  AppBar,
-  Toolbar,
   Drawer,
   List,
   ListItem,
   ListItemText,
   Typography,
-  Button,
   Menu,
-  MenuItem
+  MenuItem,
+  Button
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useMentee } from '../MenteeContext'; // Import useMentee hook
 
-// Import MenteeDashboard component
 import {
   ExitToApp,
   Dashboard as DashboardIcon,
-  School as SchoolIcon, // For Academics
-  SportsEsports as SportsEsportsIcon, // For Non-Academics
-  Event as EventIcon, // For Meeting Schedules
-  Assignment as AssignmentIcon, // For Approvals
-  Feedback as FeedbackIcon, // For Mentor Remarks
-  Lock as LockIcon, // For Change Password
-  AssignmentTurnedIn as AssignmentTurnedInIcon, // For Attendance
+  School as SchoolIcon,
+  SportsEsports as SportsEsportsIcon,
+  Event as EventIcon,
+  Assignment as AssignmentIcon,
+  Lock as LockIcon,
+  AssignmentTurnedIn as AssignmentTurnedInIcon,
+  Person as PersonIcon, // User icon
 } from '@mui/icons-material';
 
 const Layout = ({ children }) => {
@@ -52,131 +49,217 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', fontFamily: 'Roboto, sans-serif' }}>
       <CssBaseline />
-
-      {/* App Bar */}
-      <AppBar position="fixed" sx={{ backgroundColor: '#1976D2', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
-          <Typography variant="h4" component="div" sx={{ fontFamily: 'Poppins, sans-serif', flex: 1, textAlign: 'center', color: 'white' }}>
-            MentorConnect.vnrvjiet
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-            <Typography variant="h1" component="div" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.5rem', color: 'white' }}>
-              👋🏻{name}
-              <Typography variant="h6" component="span" sx={{ marginLeft: 1, fontSize: '0.8rem', color: 'white' }}>
-                ({userRole})
-              </Typography>
-            </Typography>
-          </Box>
-        </Toolbar>
-      </AppBar>
 
       {/* Sidebar */}
       <Drawer
         variant="permanent"
         sx={{
-          width: '220px',
+          width: '250px',
           flexShrink: 0,
           zIndex: (theme) => theme.zIndex.drawer,
           '& .MuiDrawer-paper': {
-            width: '220px',
-            backgroundColor: '#1976D2',
+            width: '250px',
+            backgroundColor: '#8854f4',
+            color: 'white',
+            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+            borderRight: 'none',
           },
         }}
       >
-        <Toolbar />
+        <Box sx={{ padding: '20px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+          <SchoolIcon sx={{ color: 'white', fontSize: '2rem' }} />
+          <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>MentorConnect</Typography>
+        </Box>
         <List>
-          <>
-<ListItem button component={Link} to={`/menteedashboard/${menteeId}`} sx={{ mb: 2, color: 'white' }}>
-              <DashboardIcon />
-              <ListItemText primary="Basic Info" />
-            </ListItem>
-            <ListItem button onClick={handleMenuClick} sx={{ mb: 2, color: 'white' }}>
-              <AssignmentIcon />
-              <ListItemText primary="Performance" />
-            </ListItem>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              sx={{
-                '& .MuiPaper-root': {
-                  backgroundColor: '#1976D2',
+          <ListItem
+            button
+            component={Link}
+            to={`/menteedashboard/${menteeId}`}
+            sx={{
+              color: 'white',
+              mb: 2,
+              transition: 'transform 0.2s',
+              '&:hover': {
+                transform: 'scale(0.9)',
+              },
+            }}
+          >
+            <DashboardIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Dashboard" sx={{ fontSize: '16px' }} />
+          </ListItem>
+          <ListItem
+            button
+            onClick={handleMenuClick}
+            sx={{
+              color: 'white',
+              mb: 2,
+              transition: 'transform 0.2s',
+              '&:hover': {
+                transform: 'scale(0.9)',
+              },
+            }}
+          >
+            <AssignmentIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Performance" sx={{ fontSize: '16px' }} />
+          </ListItem>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            sx={{
+              '& .MuiPaper-root': {
+                backgroundColor: '#7a43e9',
+                color: '#8854f4',
+                borderRadius: '8px',
+                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+              },
+            }}
+          >
+            <MenuItem onClick={handleMenuClose}>
+              <Button
+                variant="text"
+                fullWidth
+                component={Link}
+                to="/academics"
+                sx={{
+                  textAlign: 'left',
                   color: 'white',
-                  borderRadius: '8px',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                },
-              }}
-            >
-              <MenuItem onClick={handleMenuClose} sx={{ justifyContent: 'flex-start' }}>
-                <Button
-                  variant="text"
-                  fullWidth
-                  component={Link}
-                  to="/academics"
-                  sx={{
-                    textAlign: 'left',
-                    color: 'white',
-                    '&:hover': {
-                      backgroundColor: '#115293',
-                    },
-                  }}
-                >
-                  <SchoolIcon sx={{ mr: 1 }} />
-                  Academics
-                </Button>
-              </MenuItem>
-              <MenuItem onClick={handleMenuClose} sx={{ justifyContent: 'flex-start' }}>
-                <Button
-                  variant="text"
-                  fullWidth
-                  component={Link}
-                  to="/nonacademics"
-                  sx={{
-                    textAlign: 'left',
-                    color: 'white',
-                    '&:hover': {
-                      backgroundColor: '#115293',
-                    },
-                  }}
-                >
-                  <SportsEsportsIcon sx={{ mr: 1 }} />
-                  Non-Academics
-                </Button>
-              </MenuItem>
-            </Menu>
-            <ListItem button component={Link} to="/attendance" sx={{ mb: 2, color: 'white' }}>
-              <AssignmentTurnedInIcon />
-              <ListItemText primary="Attendance" />
-            </ListItem>
-            <ListItem button component={Link} to="/approvals" sx={{ mb: 2, color: 'white' }}>
-              <AssignmentIcon />
-              <ListItemText primary="Approvals" />
-            </ListItem>
-            <ListItem button component={Link} to="/meetingschedules" sx={{ mb: 2, color: 'white' }}>
-              <EventIcon />
-              <ListItemText primary="Meeting Schedules" />
-            </ListItem>
-            <ListItem button component={Link} to= {`/changepassword/`} sx={{ mb: 2, color: 'white' }}>
-
-              <LockIcon />
-              <ListItemText primary="Change Password" />
-            </ListItem>
-            <Button sx={{ color: 'white', marginTop: 'auto' }} onClick={handleLogout}>
-              <ExitToApp />
-              Logout
-            </Button>
-          </>
+                  backgroundColor: '#7a43e9',
+                  transition: 'background-color 0.3s, color 0.3s',
+                  '&:hover': {
+                    backgroundColor: '#7745e0',
+                  },
+                }}
+              >
+                <SchoolIcon sx={{ mr: 1 }} />
+                Academics
+              </Button>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <Button
+                variant="text"
+                fullWidth
+                component={Link}
+                to="/nonacademics"
+                sx={{
+                  textAlign: 'left',
+                  backgroundColor: '#7a43e9',
+                  color: 'white',
+                  transition: 'background-color 0.3s, color 0.3s',
+                  '&:hover': {
+                    backgroundColor: '#7745e0',
+                  },
+                }}
+              >
+                <SportsEsportsIcon sx={{ mr: 1 }} />
+                Non-Academics
+              </Button>
+            </MenuItem>
+          </Menu>
+          <ListItem
+            button
+            component={Link}
+            to="/attendance"
+            sx={{
+              color: 'white',
+              mb: 2,
+              transition: 'transform 0.2s',
+              '&:hover': {
+                transform: 'scale(0.9)',
+              },
+            }}
+          >
+            <AssignmentTurnedInIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Attendance" sx={{ fontSize: '16px' }} />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/approvals"
+            sx={{
+              color: 'white',
+              mb: 2,
+              transition: 'transform 0.2s',
+              '&:hover': {
+                transform: 'scale(0.9)',
+              },
+            }}
+          >
+            <AssignmentIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Approvals" sx={{ fontSize: '16px' }} />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/meetingschedules"
+            sx={{
+              color: 'white',
+              mb: 2,
+              transition: 'transform 0.2s',
+              '&:hover': {
+                transform: 'scale(0.9)',
+              },
+            }}
+          >
+            <EventIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Meeting Schedules" sx={{ fontSize: '16px' }} />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/changepassword"
+            sx={{
+              color: 'white',
+              mb: 2,
+              transition: 'transform 0.2s',
+              '&:hover': {
+                transform: 'scale(0.9)',
+              },
+            }}
+          >
+            <LockIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Change Password" sx={{ fontSize: '16px' }} />
+          </ListItem>
         </List>
+        <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+    <PersonIcon sx={{ color: 'white', fontSize: '2.6rem', marginRight: '5px', marginTop:'2.5px'}} /> {/* User icon */}
+    <Box>
+      <Typography variant="body1" sx={{ color: 'white', fontSize:'1.2rem'}}>
+        {name}
+      </Typography>
+      <Typography variant="body2" sx={{ color: '#fff', fontSize:'0.7rem' }}>
+        Mentor
+      </Typography>
+    </Box>
+  </Box>
+  <Button
+    onClick={handleLogout}
+    sx={{
+      color: 'white',
+      borderColor: 'white',
+      transition: 'background-color 0.3s, color 0.3s', // Smooth hover effect
+      '&:hover': {
+        borderColor: 'white',
+        backgroundColor: '#DC143C',
+      },
+    }}
+  >
+    <ExitToApp sx={{ mr: 1 }} />
+    Logout
+  </Button>
+</Box>
+
       </Drawer>
 
       {/* Main Content */}
@@ -189,19 +272,8 @@ const Layout = ({ children }) => {
           height: 'calc(100vh - 64px)',
         }}
       >
-        <Toolbar />
         {children}
       </Box>
-
-      {/* Footer */}
-      <Typography
-        variant="body2"
-        color="textSecondary"
-        align="center"
-        sx={{ backgroundColor: '#1976D2', py: 2, color: 'white', mt: 'auto', position: 'fixed', bottom: 0, width: '100%' }}
-      >
-        @MentorConnect.vnrvjiet.
-      </Typography>
     </Box>
   );
 };
