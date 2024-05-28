@@ -1,0 +1,59 @@
+.attendance-container {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .attendance-percentage {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .attendance-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .gauge-chart-container {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gauge-chart {
+    width: 100%;
+    max-width: 250px; /* Reduced size for the gauge chart */
+    height: auto;
+  }
+  
+  .attendance-table-container {
+    flex: 1 1 300px;
+    overflow-x: auto;
+  }
+  
+  .attendance-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .attendance-table th, .attendance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .attendance-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .attendance-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .attendance-table tr:hover {
+    background-color: #ddd;
+  }
