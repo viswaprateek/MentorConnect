@@ -56,15 +56,15 @@ const Layout = ({ children }) => {
       <CssBaseline />
 
       {/* App Bar */}
-      <AppBar position="fixed" sx={{ backgroundColor: '#1976D2', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <AppBar position="fixed" sx={{ backgroundColor: '#dedcdc', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Typography variant="h4" component="div" sx={{ fontFamily: 'Poppins, sans-serif', flex: 1, textAlign: 'center', color: 'white' }}>
+          <Typography variant="h4" component="div" sx={{ fontFamily: 'Poppins, sans-serif', flex: 1, textAlign: 'center', color: 'black' }}>
             MentorConnect.vnrvjiet
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-            <Typography variant="h1" component="div" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.5rem', color: 'white' }}>
+            <Typography variant="h1" component="div" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.5rem', color: 'black' }}>
               👋🏻{name}
-              <Typography variant="h6" component="span" sx={{ marginLeft: 1, fontSize: '0.8rem', color: 'white' }}>
+              <Typography variant="h6" component="span" sx={{ marginLeft: 1, fontSize: '0.8rem', color: 'black' }}>
                 ({userRole})
               </Typography>
             </Typography>
@@ -81,18 +81,18 @@ const Layout = ({ children }) => {
           zIndex: (theme) => theme.zIndex.drawer,
           '& .MuiDrawer-paper': {
             width: '220px',
-            backgroundColor: '#1976D2',
+            backgroundColor: '#dedcdc',
           },
         }}
       >
         <Toolbar />
         <List>
           <>
-<ListItem button component={Link} to={`/menteedashboard/${menteeId}`} sx={{ mb: 2, color: 'white' }}>
+<ListItem button component={Link} to={`/menteedashboard/${menteeId}`} sx={{ mb: 2, color: 'black' }}>
               <DashboardIcon />
               <ListItemText primary="Basic Info" />
             </ListItem>
-            <ListItem button onClick={handleMenuClick} sx={{ mb: 2, color: 'white' }}>
+            <ListItem button onClick={handleMenuClick} sx={{ mb: 2, color: 'black' }}>
               <AssignmentIcon />
               <ListItemText primary="Performance" />
             </ListItem>
@@ -110,8 +110,8 @@ const Layout = ({ children }) => {
               }}
               sx={{
                 '& .MuiPaper-root': {
-                  backgroundColor: '#1976D2',
-                  color: 'white',
+                  backgroundColor: '#dedcdc',
+                  color: 'black',
                   borderRadius: '8px',
                   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
                 },
@@ -125,7 +125,7 @@ const Layout = ({ children }) => {
                   to="/academics"
                   sx={{
                     textAlign: 'left',
-                    color: 'white',
+                    color: 'black',
                     '&:hover': {
                       backgroundColor: '#115293',
                     },
@@ -143,7 +143,7 @@ const Layout = ({ children }) => {
                   to="/nonacademics"
                   sx={{
                     textAlign: 'left',
-                    color: 'white',
+                    color: 'black',
                     '&:hover': {
                       backgroundColor: '#115293',
                     },
@@ -154,24 +154,24 @@ const Layout = ({ children }) => {
                 </Button>
               </MenuItem>
             </Menu>
-            <ListItem button component={Link} to="/attendance" sx={{ mb: 2, color: 'white' }}>
+            <ListItem button component={Link} to="/attendance" sx={{ mb: 2, color: 'black' }}>
               <AssignmentTurnedInIcon />
               <ListItemText primary="Attendance" />
             </ListItem>
-            <ListItem button component={Link} to="/approvals" sx={{ mb: 2, color: 'white' }}>
+            <ListItem button component={Link} to="/approvals" sx={{ mb: 2, color: 'black' }}>
               <AssignmentIcon />
               <ListItemText primary="Approvals" />
             </ListItem>
-            <ListItem button component={Link} to="/meetingschedules" sx={{ mb: 2, color: 'white' }}>
+            <ListItem button component={Link} to="/meetingschedules" sx={{ mb: 2, color: 'black' }}>
               <EventIcon />
               <ListItemText primary="Meeting Schedules" />
             </ListItem>
-            <ListItem button component={Link} to= {`/changepassword/`} sx={{ mb: 2, color: 'white' }}>
+            <ListItem button component={Link} to= {`/changepassword/`} sx={{ mb: 2, color: 'black' }}>
 
               <LockIcon />
               <ListItemText primary="Change Password" />
             </ListItem>
-            <Button sx={{ color: 'white', marginTop: 'auto' }} onClick={handleLogout}>
+            <Button sx={{ color: 'black', marginTop: 'auto' }} onClick={handleLogout}>
               <ExitToApp />
               Logout
             </Button>
@@ -198,7 +198,7 @@ const Layout = ({ children }) => {
         variant="body2"
         color="textSecondary"
         align="center"
-        sx={{ backgroundColor: '#1976D2', py: 2, color: 'white', mt: 'auto', position: 'fixed', bottom: 0, width: '100%' }}
+        sx={{ backgroundColor: '#dedcdc', py: 2, color: 'black', mt: 'auto', position: 'fixed', bottom: 0, width: '100%' }}
       >
         @MentorConnect.vnrvjiet.
       </Typography>
