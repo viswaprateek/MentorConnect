@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
   };
 
   const drawerContent = (
-    <Box sx={{ width: '250px', backgroundColor: '#8854f4', color: 'white', height: '100%' }}>
+    <Box sx={{ width: '250px', backgroundColor: '#212529', color: 'white', height: '100%' }}>
       <Box sx={{ padding: '20px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
         <SchoolIcon sx={{ color: 'white', fontSize: '2rem' }} />
         <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>MentorConnect</Typography>
@@ -106,8 +106,8 @@ const Layout = ({ children }) => {
           }}
           sx={{
             '& .MuiPaper-root': {
-              backgroundColor: '#7a43e9',
-              color: '#8854f4',
+              backgroundColor: '#212529',
+              color: '#212529',
               borderRadius: '8px',
               boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
             },
@@ -122,7 +122,7 @@ const Layout = ({ children }) => {
               sx={{
                 textAlign: 'left',
                 color: 'white',
-                backgroundColor: '#7a43e9',
+                backgroundColor: '#212529',
                 transition: 'background-color 0.3s, color 0.3s',
                 '&:hover': {
                   backgroundColor: '#7745e0',
@@ -141,7 +141,7 @@ const Layout = ({ children }) => {
               to="/nonacademics"
               sx={{
                 textAlign: 'left',
-                backgroundColor: '#7a43e9',
+                backgroundColor: '#212529',
                 color: 'white',
                 transition: 'background-color 0.3s, color 0.3s',
                 '&:hover': {
@@ -275,7 +275,7 @@ const Layout = ({ children }) => {
           zIndex: (theme) => theme.zIndex.drawer,
           '& .MuiDrawer-paper': {
             width: '250px',
-            backgroundColor: '#8854f4',
+            backgroundColor: '#212529',
             color: 'white',
             boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
             borderRight: 'none',
@@ -298,7 +298,7 @@ const Layout = ({ children }) => {
           display: { xs: 'block', sm: 'none' },
           '& .MuiDrawer-paper': {
             width: '250px',
-            backgroundColor: '#8854f4',
+            backgroundColor: '#212529',
             color: 'white',
             boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
             borderRight: 'none',
