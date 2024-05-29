@@ -29,15 +29,15 @@ const MiniLayout = ({ children }) => {
       <CssBaseline />
 
       {/* App Bar */}
-      <AppBar position="fixed" sx={{ backgroundColor: '#1976D2', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <AppBar position="fixed" sx={{ backgroundColor: '#212529', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Typography variant="h4" component="div" sx={{ fontFamily: 'Poppins, sans-serif', flex: 1, textAlign: 'center', color: 'white' }}>
-            MentorConnect.vnrvjiet
+          <Typography  component="div" sx={{ fontFamily: 'Poppins, sans-serif',fontSize:'1.8rem', flex: 1, textAlign: 'center', color: 'white' }}>
+            MentorConnect
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant="h6" component="div" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.5rem', color: 'white' }}>
-              👋🏻{name}
-              <Typography variant="body2" component="span" sx={{ marginLeft: 1, fontSize: '1rem', color: 'white' }}>
+            <Typography variant="h6" component="div" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.2rem', color: 'white' }}>
+              Welcome! {name}
+              <Typography variant="body2" component="span" sx={{ marginLeft: 1, fontSize: '0.8rem', color: 'white' }}>
                 ({userRole})
               </Typography>
             </Typography>
@@ -67,9 +67,9 @@ const MiniLayout = ({ children }) => {
         variant="body2"
         color="textSecondary"
         align="center"
-        sx={{ backgroundColor: '#1976D2', py: 2, color: 'white', mt: 'auto', position: 'fixed', bottom: 0, width: '100%' }}
+        sx={{ backgroundColor: '#212529', py: 2, color: 'white', mt: 'auto', position: 'fixed', bottom: 0, width: '100%' }}
       >
-        @MentorConnect.vnrvjiet.
+        &copy; MentorConnect.
       </Typography>
     </Box>
   );

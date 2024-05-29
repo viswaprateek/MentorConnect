@@ -5,7 +5,7 @@ function Header() {
     <AppBar position="static" color="default" elevation={1}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1, color: 'primary.main' }}>
-          MentorConnect.vnrvjiet
+          MentorConnect
         </Typography>
         <Link to="/login">
         <Button color="primary" variant="outlined">Login</Button>

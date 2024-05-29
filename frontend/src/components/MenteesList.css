@@ -1,0 +1,24 @@
+/* MenteesList.css */
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation class */
+.fade-in {
+  opacity: 0; /* Initial state */
+  animation: fadeIn 1s ease-out forwards; /* Apply the animation */
+}
+
+/* Visible class to trigger animation */
+.fade-in.visible {
+  opacity: 1;
+}
