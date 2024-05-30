@@ -61,6 +61,24 @@ const Layout = ({ children }) => {
         <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>MentorConnect</Typography>
       </Box>
       <List>
+      {userRole === 'mentor'?(<>
+        <ListItem
+          button
+          component={Link}
+          to={`/menteedashboard/${menteeId}`}
+          sx={{
+            color: 'white',
+            mb: 2,
+            transition: 'transform 0.2s',
+            '&:hover': {
+              transform: 'scale(0.9)',
+            },
+          }}
+        >
+          <DashboardIcon sx={{ mr: 2 }} />
+          <ListItemText primary="Basic Info" sx={{ fontSize: '16px' }} />
+        </ListItem>
+        </>) :(<>
         <ListItem
           button
           component={Link}
@@ -77,6 +95,7 @@ const Layout = ({ children }) => {
           <DashboardIcon sx={{ mr: 2 }} />
           <ListItemText primary="Dashboard" sx={{ fontSize: '16px' }} />
         </ListItem>
+        </>)  }
         <ListItem
           button
           onClick={handleMenuClick}
@@ -218,8 +237,25 @@ const Layout = ({ children }) => {
           <LockIcon sx={{ mr: 2 }} />
           <ListItemText primary="Change Password" sx={{ fontSize: '16px' }} />
         </ListItem>
+      <ListItem
+          button
+          component={Link}
+          to="/mentordashboard"
+          sx={{
+            color: 'white',
+            mb: 2,
+            transition: 'transform 0.2s',
+            '&:hover': {
+              transform: 'scale(0.9)',
+            },
+          }}
+        >
+          <PersonIcon sx={{ mr: 2 }} />
+          <ListItemText primary="My Profile" sx={{ fontSize: '16px' }} />
+        </ListItem>
       </List>
-      <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center',marginTop:'110px' }}>
+
+      <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center',marginTop:'2rem' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
           <PersonIcon sx={{ color: 'white', fontSize: '2.6rem', marginRight: '5px', marginTop: '2.5px' }} /> {/* User icon */}
           <Box>
@@ -315,7 +351,7 @@ const Layout = ({ children }) => {
           flexGrow: 1,
           p: 3,
           overflow: 'auto',
-          height: 'calc(100vh - 64px)',
+          
         }}
       >
         {children}

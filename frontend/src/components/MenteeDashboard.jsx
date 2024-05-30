@@ -38,8 +38,8 @@ const MenteeDashboard = () => {
   return (
     <div className='bg-light'>
       <Layout>
-        <h2>Dashboard</h2>
-        <Card className="mb-4" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+        
+        <Card className="mb-4 m-3" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
           <div style={{ position: 'relative', marginBottom: '1rem' }}>
             <Image
               src={profilebanner}
@@ -72,7 +72,7 @@ const MenteeDashboard = () => {
         </Card>
 
         {/* New Card */}
-        <Card className="mb-4" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+        <Card className="mb-4 m-3" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
           <Card.Body>
             <h5>Basic Info</h5>
             <Row>
