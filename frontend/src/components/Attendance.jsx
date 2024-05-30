@@ -6,6 +6,7 @@ import Layout from './Layout';
 import './Attendance.css'; // Import the CSS file
 
 const Attendance = () => {
+  
   const { menteeId } = useMentee();
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(true);

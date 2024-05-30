@@ -1,3 +1,4 @@
+
 // api.jsx
 /* eslint-disable no-useless-catch */
 import axios from 'axios';
@@ -151,6 +152,43 @@ export const getAttendanceByUserId = async (userId) => {
 
 export const changePassword = (id, currentPassword, newPassword,role) => 
   api.put(`/mentees/changepassword/${id}`, { currentPassword, newPassword,role });
+
+
+
+
+export const getPermissionsByMentor = async (menteeId) => {
+  try {
+    const response = await api.get(`/permissions/${menteeId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching permissions by mentor:', error);
+    throw error;
+  }
+};
+
+export const requestPermission = async (data) => {
+  try {
+    const response = await api.post('/permissions', data);
+    return response.data;
+  } catch (error) {
+    console.error('Error requesting permission:', error);
+    throw error;
+  }
+};
+
+export const updatePermissionStatus = async (id, status) => {
+  try {
+    const response = await api.put(`/permissions/${id}`, { status });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating permission status:', error);
+    throw error;
+  }
+};
+
+
+
+
 
 
 //END NEW ROUTES

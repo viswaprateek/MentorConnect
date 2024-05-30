@@ -157,7 +157,7 @@ const Layout = ({ children }) => {
         <ListItem
           button
           component={Link}
-          to="/attendance"
+          to={`/attendance`}
           sx={{
             color: 'white',
             mb: 2,
@@ -173,7 +173,7 @@ const Layout = ({ children }) => {
         <ListItem
           button
           component={Link}
-          to="/approvals"
+          to={`/permissions`}
           sx={{
             color: 'white',
             mb: 2,
@@ -227,7 +227,7 @@ const Layout = ({ children }) => {
               {name}
             </Typography>
             <Typography variant="body2" sx={{ color: '#fff', fontSize: '0.7rem' }}>
-              Mentor
+              {userRole}
             </Typography>
           </Box>
         </Box>
