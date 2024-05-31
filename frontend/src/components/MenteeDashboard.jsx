@@ -67,6 +67,7 @@ const MenteeDashboard = () => {
           <Card.Body>
             <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{mentee.name}</p>
             <p className="text-muted">{mentee.email}</p>
+            <p className="text-muted">{mentee.class1}</p>
             <p className="text-muted">Roll Number: {mentee.registrationNumber}</p>
           </Card.Body>
         </Card>

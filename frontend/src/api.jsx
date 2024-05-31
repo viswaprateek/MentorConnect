@@ -186,7 +186,44 @@ export const updatePermissionStatus = async (id, status) => {
   }
 };
 
+export const getMeetingsByMentee = async (menteeId) => {
+  try {
+    const response = await api.get(`/meetings/${menteeId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching meetings:', error);
+    throw error;
+  }
+};
 
+export const createMeeting = async (data) => {
+  try {
+    const response = await api.post('/meetings', data);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating meeting:', error);
+    throw error;
+  }
+};
+
+export const updateMeeting = async (id, data) => {
+  try {
+    const response = await api.put(`/meetings/${id}`, data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating meeting:', error);
+    throw error;
+  }
+};
+
+export const deleteMeeting = async (id) => {
+  try {
+    await api.delete(`/meetings/${id}`);
+  } catch (error) {
+    console.error('Error deleting meeting:', error);
+    throw error;
+  }
+};
 
 
 
