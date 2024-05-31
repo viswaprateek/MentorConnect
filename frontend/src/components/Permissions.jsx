@@ -8,7 +8,8 @@ import { useAuth } from '../AuthContext';
 import { useMentee } from '../MenteeContext';
 import { useParams } from 'react-router-dom';
 const Permissions = () => {
-    // const {id}=useParams();
+    const params=useParams();
+    console.log(params)
     const { userRole } = useAuth();
   const { menteeId } = useMentee();
   const [permissions, setPermissions] = useState([]);
@@ -18,7 +19,7 @@ const Permissions = () => {
   useEffect(() => {
     const fetchPermissions = async () => {
       try {
-        const fetchedPermissions = await getPermissionsByMentor(menteeId);
+        const fetchedPermissions = await getPermissionsByMentor(params.id);
         setPermissions(fetchedPermissions);
       } catch (error) {
         console.error('Error fetching permissions:', error);
@@ -28,7 +29,7 @@ const Permissions = () => {
     };
 
     fetchPermissions();
-  }, [menteeId]);
+  }, [params.id]);
 
   const handlePermissionAdded = (newPermission) => {
     setPermissions([...permissions, newPermission]);

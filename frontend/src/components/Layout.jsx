@@ -157,7 +157,7 @@ const Layout = ({ children }) => {
         <ListItem
           button
           component={Link}
-          to={`/attendance`}
+          to={`/attendance/${menteeId}`}
           sx={{
             color: 'white',
             mb: 2,
@@ -173,7 +173,7 @@ const Layout = ({ children }) => {
         <ListItem
           button
           component={Link}
-          to={`/permissions`}
+          to={`/permissions/${menteeId}`}
           sx={{
             color: 'white',
             mb: 2,
@@ -184,7 +184,7 @@ const Layout = ({ children }) => {
           }}
         >
           <AssignmentIcon sx={{ mr: 2 }} />
-          <ListItemText primary="Approvals" sx={{ fontSize: '16px' }} />
+          <ListItemText primary="Permissions" sx={{ fontSize: '16px' }} />
         </ListItem>
         <ListItem
           button
@@ -315,7 +315,7 @@ const Layout = ({ children }) => {
           flexGrow: 1,
           p: 3,
           overflow: 'auto',
-          height: 'calc(100vh - 64px)',
+        
         }}
       >
         {children}
