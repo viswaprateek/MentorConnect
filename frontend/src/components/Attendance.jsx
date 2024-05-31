@@ -4,9 +4,10 @@ import { useMentee } from '../MenteeContext'; // Importing useMentee to get ment
 import { getAttendanceByUserId } from '../api'; // Importing the function from api.jsx
 import Layout from './Layout';
 import './Attendance.css'; // Import the CSS file
-
+import { useParams } from 'react-router-dom';
 const Attendance = () => {
-  
+  const params = useParams()
+  console.log(params.id)
   const { menteeId } = useMentee();
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,7 @@ const Attendance = () => {
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const data = await getAttendanceByUserId(menteeId);
+        const data = await getAttendanceByUserId(params.id);
         setAttendanceData(data);
         const totalAttended = sumClasses(data, 'attended');
         const totalClasses = sumClasses(data, 'totalClasses');
@@ -30,10 +31,10 @@ const Attendance = () => {
       }
     };
 
-    if (menteeId) {
+    if (params.id) {
       fetchAttendance();
     }
-  }, [menteeId]);
+  }, [params.id]);
 
   const sumClasses = (data, key) => {
     const keys = {

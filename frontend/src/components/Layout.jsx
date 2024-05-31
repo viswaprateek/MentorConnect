@@ -182,7 +182,7 @@ const Layout = ({ children }) => {
         <ListItem
           button
           component={Link}
-          to={`/attendance`}
+          to={`/attendance/${menteeId}`}
           sx={{
             color: 'white',
             mb: 2,
@@ -198,7 +198,7 @@ const Layout = ({ children }) => {
         <ListItem
           button
           component={Link}
-          to={`/permissions`}
+          to={`/permissions/${menteeId}`}
           sx={{
             color: 'white',
             mb: 2,
@@ -209,7 +209,7 @@ const Layout = ({ children }) => {
           }}
         >
           <AssignmentIcon sx={{ mr: 2 }} />
-          <ListItemText primary="Approvals" sx={{ fontSize: '16px' }} />
+          <ListItemText primary="Permissions" sx={{ fontSize: '16px' }} />
         </ListItem>
         <ListItem
           button

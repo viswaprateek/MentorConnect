@@ -95,9 +95,9 @@ console.log(authenticated)
         <Route path="/nonacademics" element={<Nonacademics />} />
         <Route path="/remarks" element={<MentorRemarks />} />
 
-        <Route path="/attendance" element={<Attendance />} />
-        <Route path="/approvals" element={<Approvals />} />
-        <Route path={`/permissions`} element={<Permissions />} />
+        <Route path="/attendance/:id" element={<Attendance />} />
+        {/* <Route path="/approvals" element={<Approvals />} /> */}
+        <Route path="/permissions/:id" element={<Permissions />} />
         <Route path="/meetingschedules" element={<MeetingSchedules />} />
         <Route path="/changepassword" element={<ChangePassword />} />
 
