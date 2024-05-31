@@ -1,7 +1,8 @@
 
 //import MainSection from '../components/HeroSection';
-import Footer from '../components/Footer';
+
 import Features from '../landing page/Features';
+import Footer from '../landing page/Footer';
 //import AboutSection from '../components/AboutSection';
 //import UserFlowSection from '../components/UserFlowSection';
 import Header from '../landing page/Header';
@@ -13,8 +14,7 @@ function Home() {
       <Header/>
       <HeroSection/>
       <Features/>
-      
-      <Footer />
+      <Footer/>
     </div>
   );
 }
