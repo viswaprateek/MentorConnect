@@ -273,7 +273,7 @@ const Layout = ({ children }) => {
             </Typography>
           </Box>
         </Box>
-        <Button
+        {/* <Button
           onClick={handleLogout}
           sx={{
             color: 'white',
@@ -287,7 +287,7 @@ const Layout = ({ children }) => {
         >
           <ExitToApp sx={{ mr: 1 }} />
           Logout
-        </Button>
+        </Button> */}
       </Box>
     </Box>
   );
