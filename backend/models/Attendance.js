@@ -31,7 +31,9 @@ const attendanceSchema = new mongoose.Schema({
   OSLABtotalClasses: { type: Number, required: true },
   FPcode: { type: String, required: true },
   FPattended: { type: Number, required: true },
-  FPtotalClasses: { type: Number, required: true }
+  FPtotalClasses: { type: Number, required: true },
+  TotalSemClasses: { type: Number, required: true },
+
 });
 
 const Attendance = mongoose.model('attendance', attendanceSchema);

@@ -42,7 +42,7 @@
 }
 
 .header nav ul li a:hover {
-  background-color: #ffffff;
+  background-color: #555;
 }
 
 @media (max-width: 576px) {
