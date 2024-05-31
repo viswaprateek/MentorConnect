@@ -1,0 +1,54 @@
+.permission-card {
+    background-color: #2c2f33;
+    border: none;
+    color: #ffffff;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+  
+  .permission-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .permission-card .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .permission-card .card-title {
+    color: #ffffff;
+    font-weight: 600;
+  }
+  
+  .permission-card .text-muted {
+    color: #b9bbbe !important;
+  }
+  
+  .permission-card .btn-success {
+    background-color: #43b581;
+    border: none;
+  }
+  
+  .permission-card .btn-danger {
+    background-color: #f04747;
+    border: none;
+  }
+  
+  .permission-card .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .permission-card .rounded-circle {
+    border-radius: 50%;
+  }
+  
+  .permission-card img {
+    object-fit: cover;
+  }
+  
+  .card-text.flex-grow-1 {
+    flex-grow: 1;
+  }
+  

@@ -10,7 +10,9 @@ import {
   Menu,
   MenuItem,
   Button,
-  IconButton
+  IconButton,
+  AppBar,
+  Toolbar,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
@@ -26,7 +28,7 @@ import {
   Lock as LockIcon,
   AssignmentTurnedIn as AssignmentTurnedInIcon,
   Person as PersonIcon, // User icon
-  Menu as MenuIcon
+  Menu as MenuIcon,
 } from '@mui/icons-material';
 
 const Layout = ({ children }) => {
@@ -61,41 +63,45 @@ const Layout = ({ children }) => {
         <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>MentorConnect</Typography>
       </Box>
       <List>
-      {userRole === 'mentor'?(<>
-        <ListItem
-          button
-          component={Link}
-          to={`/menteedashboard/${menteeId}`}
-          sx={{
-            color: 'white',
-            mb: 2,
-            transition: 'transform 0.2s',
-            '&:hover': {
-              transform: 'scale(0.9)',
-            },
-          }}
-        >
-          <DashboardIcon sx={{ mr: 2 }} />
-          <ListItemText primary="Basic Info" sx={{ fontSize: '16px' }} />
-        </ListItem>
-        </>) :(<>
-        <ListItem
-          button
-          component={Link}
-          to={`/menteedashboard/${menteeId}`}
-          sx={{
-            color: 'white',
-            mb: 2,
-            transition: 'transform 0.2s',
-            '&:hover': {
-              transform: 'scale(0.9)',
-            },
-          }}
-        >
-          <DashboardIcon sx={{ mr: 2 }} />
-          <ListItemText primary="Dashboard" sx={{ fontSize: '16px' }} />
-        </ListItem>
-        </>)  }
+        {userRole === 'mentor' ? (
+          <>
+            <ListItem
+              button
+              component={Link}
+              to={`/menteedashboard/${menteeId}`}
+              sx={{
+                color: 'white',
+                mb: 2,
+                transition: 'transform 0.2s',
+                '&:hover': {
+                  transform: 'scale(0.9)',
+                },
+              }}
+            >
+              <DashboardIcon sx={{ mr: 2 }} />
+              <ListItemText primary="Basic Info" sx={{ fontSize: '16px' }} />
+            </ListItem>
+          </>
+        ) : (
+          <>
+            <ListItem
+              button
+              component={Link}
+              to={`/menteedashboard/${menteeId}`}
+              sx={{
+                color: 'white',
+                mb: 2,
+                transition: 'transform 0.2s',
+                '&:hover': {
+                  transform: 'scale(0.9)',
+                },
+              }}
+            >
+              <DashboardIcon sx={{ mr: 2 }} />
+              <ListItemText primary="Dashboard" sx={{ fontSize: '16px' }} />
+            </ListItem>
+          </>
+        )}
         <ListItem
           button
           onClick={handleMenuClick}
@@ -237,7 +243,7 @@ const Layout = ({ children }) => {
           <LockIcon sx={{ mr: 2 }} />
           <ListItemText primary="Change Password" sx={{ fontSize: '16px' }} />
         </ListItem>
-      <ListItem
+        <ListItem
           button
           component={Link}
           to="/mentordashboard"
@@ -255,7 +261,7 @@ const Layout = ({ children }) => {
         </ListItem>
       </List>
 
-      <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center',marginTop:'2rem' }}>
+      <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
           <PersonIcon sx={{ color: 'white', fontSize: '2.6rem', marginRight: '5px', marginTop: '2.5px' }} /> {/* User icon */}
           <Box>
@@ -289,7 +295,42 @@ const Layout = ({ children }) => {
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', fontFamily: 'Roboto, sans-serif' }}>
       <CssBaseline />
-
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Toolbar sx={{ backgroundColor: '#212529', display: 'flex', justifyContent: 'space-between' }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div">
+            MentorConnect
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="body1" sx={{ color: 'white', fontSize: '1rem', marginRight: '20px' }}>
+              {name} ({userRole})
+            </Typography>
+            <Button
+              onClick={handleLogout}
+              sx={{
+                color: 'white',
+                borderColor: 'white',
+                transition: 'background-color 0.3s, color 0.3s', // Smooth hover effect
+                '&:hover': {
+                  borderColor: 'white',
+                  backgroundColor: '#DC143C',
+                },
+              }}
+            >
+              <ExitToApp sx={{ mr: 1 }} />
+              Logout
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
       {/* Toggle Button for Mobile View */}
       <IconButton
         color="black"
@@ -351,7 +392,7 @@ const Layout = ({ children }) => {
           flexGrow: 1,
           p: 3,
           overflow: 'auto',
-          
+          marginTop: '64px', // Add margin to account for the AppBar height
         }}
       >
         {children}

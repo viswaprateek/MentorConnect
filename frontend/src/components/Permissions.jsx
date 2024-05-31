@@ -49,7 +49,7 @@ const Permissions = () => {
           Permission Requests
         </Typography>
         {userRole === 'mentee' && (
-          <Button variant="contained" color="primary" onClick={() => setOpenModal(true)}>
+          <Button variant="contained" color="primary" onClick={() => setOpenModal(true)} style={{marginBottom:'1.5rem'}}>
             Request Permission
           </Button>
         )}

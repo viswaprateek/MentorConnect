@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardContent, Typography, Button, Grid } from '@mui/material';
 import { useAuth } from '../AuthContext'; // Import useAuth hook
 import { updatePermissionStatus } from '../api';
-
+import './PermissionsList.css'; // Import the custom CSS
+import Header from '../landing page/Header';
 const PermissionsList = ({ permissions, onStatusChange }) => {
   const { userRole } = useAuth(); // Get user role from AuthContext
 
@@ -18,57 +18,59 @@ const PermissionsList = ({ permissions, onStatusChange }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'accepted':
-        return 'green';
+        return 'text-success';
       case 'rejected':
-        return 'red';
+        return 'text-danger';
       case 'pending':
-        return 'orange';
+        return 'text-warning';
       default:
-        return 'black';
+        return 'text-dark';
     }
   };
 
   return (
-    <Grid container spacing={2}>
+    <div>
+    <div className="row">
       {permissions.map((permission) => (
-        <Grid item xs={12} sm={6} md={4} key={permission._id}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6">{permission.title}</Typography>
-              <Typography variant="body1">{permission.description}</Typography>
-              <Typography variant="body2" color="textSecondary">
+        <div className="col-12 col-sm-6 col-md-4 mb-3" key={permission._id}>
+          <div className="card permission-card h-100">
+            <div className="card-body d-flex flex-column">
+              <div className="d-flex align-items-center mb-3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxbz8S46qH4I4g7PacDGHeZuKICCu7zk3zlA&s" alt="Avatar" className="rounded-circle me-2" width="40" height="40" />
+                <div>
+                  <h5 className="card-title mb-0">{permission.title}</h5>
+                  <small className="text-muted">{permission.username}</small>
+                </div>
+              </div>
+              <p className="card-text flex-grow-1">{permission.description}</p>
+              <p className="card-text text-muted">
                 Date: {new Date(permission.date).toLocaleString()}
-              </Typography>
-              <Typography variant="body2" style={{ fontWeight: 'bold', color: getStatusColor(permission.status) }}>
+              </p>
+              <p className={`card-text font-weight-bold ${getStatusColor(permission.status)}`}>
                 Status: {permission.status.charAt(0).toUpperCase() + permission.status.slice(1)}
-              </Typography>
-              {userRole === 'mentor' && (
-                <>
-                  <Button
-                    variant="contained"
-                    color="primary"
+              </p>
+              {userRole === 'mentor' && permission.status === 'pending' && (
+                <div className="d-flex justify-content-between mt-2">
+                  <button
+                    className="btn btn-success btn-sm"
                     onClick={() => handleStatusChange(permission._id, 'accepted')}
-                    disabled={permission.status !== 'pending'}
-                    sx={{ mt: 1, mr: 1 }}
                   >
                     Accept
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
+                  </button>
+                  <button
+                    className="btn btn-danger btn-sm"
                     onClick={() => handleStatusChange(permission._id, 'rejected')}
-                    disabled={permission.status !== 'pending'}
-                    sx={{ mt: 1 }}
                   >
                     Reject
-                  </Button>
-                </>
+                  </button>
+                </div>
               )}
-            </CardContent>
-          </Card>
-        </Grid>
+            </div>
+          </div>
+        </div>
       ))}
-    </Grid>
+    </div>
+    </div>
   );
 };
 
