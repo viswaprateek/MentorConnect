@@ -74,7 +74,11 @@ const MenteeDashboard = () => {
         {/* New Card */}
         <Card className="mb-4 m-3" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
           <Card.Body>
-            <h5>Basic Info</h5>
+            <p style={{fontSize:'1.25rem',
+              color:'rgb(126, 26, 26)',
+              fontWeight:'bold'
+            }}>Basic Info</p>
+            <hr/>
             <Row>
               <Col md={6}>
                 <p><strong>Father Name:</strong> {mentee.FatherName}</p>
