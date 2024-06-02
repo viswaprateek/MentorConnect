@@ -6,7 +6,7 @@ const attendanceRoutes =require('./routes/attendanceRoutes')
 const menteeRoutes = require('./routes/menteeRoutes');
 const mentorRoutes = require('./routes/mentorRoutes');
 const permissionRoutes=require('./routes/permissionsRoutes')
-
+const meetingsRoutes=require('./routes/meetingsRoutes')
 
 require('dotenv').config();
 
@@ -23,7 +23,7 @@ app.use('/mentees', menteeRoutes);
 app.use('/mentors', mentorRoutes);
 app.use('/attendance', attendanceRoutes);
 app.use('/permissions', permissionRoutes);
-
+app.use('/meetings',meetingsRoutes)
 
 
 

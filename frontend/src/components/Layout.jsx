@@ -214,7 +214,7 @@ const Layout = ({ children }) => {
         <ListItem
           button
           component={Link}
-          to="/meetingschedules"
+          to={`/meetings/${menteeId}`}
           sx={{
             color: 'white',
             mb: 2,

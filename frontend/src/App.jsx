@@ -19,9 +19,8 @@ import Academics from './components/Academics';
 import Nonacademics from './components/Nonacademics';
 import Attendance from './components/Attendance';
 import MentorRemarks from './components/MentorRemarks';
-import Approvals from './components/Approvals';
-import MeetingSchedules from './components/MeetingSchedules';
 import Permissions from './components/Permissions';
+import Meetings from './components/Meetings';
 
 function App() {
   // Check if the user is authenticated (e.g., by checking cookies or the authentication state)
@@ -98,7 +97,7 @@ console.log(authenticated)
         <Route path="/attendance/:id" element={<Attendance />} />
         {/* <Route path="/approvals" element={<Approvals />} /> */}
         <Route path="/permissions/:id" element={<Permissions />} />
-        <Route path="/meetingschedules" element={<MeetingSchedules />} />
+        <Route path="/meetings/:id" element={<Meetings />} />
         <Route path="/changepassword" element={<ChangePassword />} />
 
 
