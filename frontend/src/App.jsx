@@ -1,4 +1,5 @@
 // app.jsx
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import ChangePassword from './components/ChangePassword';

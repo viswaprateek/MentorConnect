@@ -11,10 +11,10 @@ import Alert from '@mui/material/Alert';
 import Layout from './Layout';
 import { keyframes } from '@emotion/react';
 
-// Define a simple 3D animation using keyframes
+// Define a subtle floating animation using keyframes
 const floating = keyframes`
   0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-5px); }
   100% { transform: translateY(0); }
 `;
 
@@ -46,24 +46,24 @@ function ChangePassword() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            backgroundColor: '#2c2c2c',
+            backgroundColor: '#ffffff',
             padding: 3,
             borderRadius: 2,
-            boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
-            animation: `${floating} 4s ease-in-out infinite`,
+            boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.1)',
+            animation: `${floating} 6s ease-in-out infinite`,
           }}
         >
           <Typography 
             component="h1" 
-            variant="h4" 
+            variant="h5" 
             sx={{ 
               mb: 2, 
-              fontFamily: 'Lucida Console, Monaco, monospace', 
-              color: '#e0e0e0',
-              textShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+              fontFamily: 'Roboto, sans-serif', 
+              color: '#333',
+              textShadow: '0px 0px 2px rgba(0, 0, 0, 0.1)',
             }}
           >
-            Change Password:
+            Change Password
           </Typography>
           <Box component="form" sx={{ width: '100%' }}>
             <TextField
@@ -76,7 +76,7 @@ function ChangePassword() {
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               autoComplete="current-password"
-              sx={{ backgroundColor: '#404040', borderRadius: 1, input: { color: '#e0e0e0' }, label: { color: '#e0e0e0' } }}
+              sx={{ backgroundColor: '#f5f5f5', borderRadius: 1, input: { color: '#333' }, label: { color: '#333' } }}
             />
             <TextField
               margin="normal"
@@ -88,15 +88,15 @@ function ChangePassword() {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               autoComplete="new-password"
-              sx={{ backgroundColor: '#404040', borderRadius: 1, input: { color: '#e0e0e0' }, label: { color: '#e0e0e0' } }}
+              sx={{ backgroundColor: '#f5f5f5', borderRadius: 1, input: { color: '#333' }, label: { color: '#333' } }}
             />
             {error && (
-              <Alert severity="error" sx={{ mt: 2, fontFamily: 'Lucida Console, Monaco, monospace', backgroundColor: '#ffcccb', color: '#b71c1c' }}>
+              <Alert severity="error" sx={{ mt: 2, fontFamily: 'Roboto, sans-serif', backgroundColor: '#ffebee', color: '#d32f2f' }}>
                 {error}
               </Alert>
             )}
             {success && (
-              <Alert severity="success" sx={{ mt: 2, fontFamily: 'Lucida Console, Monaco, monospace', backgroundColor: '#c8e6c9', color: '#2e7d32' }}>
+              <Alert severity="success" sx={{ mt: 2, fontFamily: 'Roboto, sans-serif', backgroundColor: '#e8f5e9', color: '#388e3c' }}>
                 {success}
               </Alert>
             )}
@@ -107,11 +107,11 @@ function ChangePassword() {
               sx={{ 
                 mt: 3, 
                 mb: 2, 
-                fontFamily: 'Lucida Console, Monaco, monospace', 
-                backgroundColor: '#37474f', 
+                fontFamily: 'Roboto, sans-serif', 
+                backgroundColor: '#1976d2', 
                 color: '#ffffff', 
                 '&:hover': {
-                  backgroundColor: '#263238',
+                  backgroundColor: '#1565c0',
                 } 
               }}
               onClick={handleChangePassword}

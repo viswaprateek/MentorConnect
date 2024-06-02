@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Grid, Card, CardContent, Typography, CircularProgress } from '@mui/material';
+import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
 import { getMenteesByMentorAndYear } from '../api';
 import MiniLayout from './MiniLayout';
 import { useMentee } from '../MenteeContext';
@@ -41,8 +41,8 @@ const MenteesList = () => {
   if (loading) {
     return (
       <MiniLayout>
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-          <CircularProgress />
+        <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+          <Spinner animation="border" />
         </Container>
       </MiniLayout>
     );
@@ -52,15 +52,15 @@ const MenteesList = () => {
     <MiniLayout>
       <Container>
         {mentees.length === 0 ? (
-          <Typography variant="h5" component="div" style={{ textAlign: 'center', marginTop: '20px' }}>
-            No mentees present.
-          </Typography>
+          <h5 className="text-center my-5">No mentees present.</h5>
         ) : (
-          <Grid container spacing={2}>
+          <Row className="gy-4">
             {mentees.map((mentee) => (
-              <MenteeCard key={mentee._id} mentee={mentee} onClick={() => handleMenteeClick(mentee._id)} />
+              <Col key={mentee._id} xs={12} sm={6} md={4} lg={3}>
+                <MenteeCard mentee={mentee} onClick={() => handleMenteeClick(mentee._id)} />
+              </Col>
             ))}
-          </Grid>
+          </Row>
         )}
       </Container>
     </MiniLayout>
@@ -71,7 +71,6 @@ const MenteeCard = ({ mentee, onClick }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '0px 0px -10% 0px',
   });
 
   useEffect(() => {
@@ -81,29 +80,21 @@ const MenteeCard = ({ mentee, onClick }) => {
   }, [inView, mentee._id]);
 
   return (
-    <Grid item xs={12} sm={6} md={3} ref={ref} id={mentee._id}>
-      <Card
-        className={`fade-in ${inView ? 'visible' : ''}`}
-        onClick={onClick}
-        style={{ width: 'auto', height: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', borderRadius: '8px' }}
-      >
-        <CardContent style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }}>
-          <img src={mentee.photoLink} alt={`${mentee.name}'s profile`} style={{ width: 'auto', height: '200px', objectFit: 'cover', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', marginBottom: '20px' }} />
-          <Typography variant="h6" component="div">
-            Name - {mentee.name}
-          </Typography>
-          <Typography color="textSecondary">
-            Registration - {mentee.registrationNumber}
-          </Typography>
-          <Typography color="textSecondary">
-            Class - {mentee.class1}
-          </Typography>
-          <Typography color="textSecondary">
-            Phone - {mentee.phone}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Grid>
+    <Card
+      ref={ref}
+      id={mentee._id}
+      className={`fade-in ${inView ? 'visible' : ''} text-center shadow-sm`}
+      onClick={onClick}
+      style={{ cursor: 'pointer', borderRadius: '8px' }}
+    >
+      <Card.Img variant="top" src={mentee.photoLink} alt={`${mentee.name}'s profile`} style={{ height: '200px', objectFit: 'cover' }} />
+      <Card.Body>
+        <Card.Title>{mentee.name}</Card.Title>
+        <Card.Text>Registration: {mentee.registrationNumber}</Card.Text>
+        <Card.Text>Class: {mentee.class1}</Card.Text>
+        <Card.Text>Phone: {mentee.phone}</Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 
