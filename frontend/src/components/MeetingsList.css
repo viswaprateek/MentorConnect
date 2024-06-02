@@ -1,70 +1,81 @@
 .meetings-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust card width */
-    gap: 20px;
-  }
-  
-  .meeting-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .meeting-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .meeting-card h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .meeting-card p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 5px;
-  }
-  
-  .meeting-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-  }
-  
-  .meeting-actions button {
-    background-color: #007bff;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .meeting-actions button:hover {
-    background-color: #0056b3;
-  }
-  
-  .meeting-actions button.btn-danger {
-    background-color: #dc3545;
-  }
-  
-  .meeting-actions button.btn-danger:hover {
-    background-color: #c82333;
-  }
-  
-  .complete-button {
-    background-color: green;
-    color: white;
-  }
-  
-  .btn-danger {
-    background-color: red;
-    color: white;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.meetings-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.meetings-list-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+}
+
+.meeting-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.meeting-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.meeting-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.meeting-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.meeting-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.meeting-actions button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.meeting-actions button:hover {
+  background-color: #0056b3;
+}
+
+.meeting-actions button.btn-danger {
+  background-color: #dc3545;
+}
+
+.meeting-actions button.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.complete-button {
+  background-color: green;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}

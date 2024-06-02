@@ -13,6 +13,8 @@ import {
   IconButton,
   AppBar,
   Toolbar,
+  Slide,
+  useScrollTrigger,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
@@ -30,6 +32,17 @@ import {
   Person as PersonIcon, // User icon
   Menu as MenuIcon,
 } from '@mui/icons-material';
+
+function HideOnScroll(props) {
+  const { children } = props;
+  const trigger = useScrollTrigger();
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
 
 const Layout = ({ children }) => {
   const { userRole, name, logout } = useAuth();
@@ -273,7 +286,7 @@ const Layout = ({ children }) => {
             </Typography>
           </Box>
         </Box>
-        <Button
+        {/* <Button
           onClick={handleLogout}
           sx={{
             color: 'white',
@@ -287,7 +300,7 @@ const Layout = ({ children }) => {
         >
           <ExitToApp sx={{ mr: 1 }} />
           Logout
-        </Button>
+        </Button> */}
       </Box>
     </Box>
   );
@@ -295,44 +308,46 @@ const Layout = ({ children }) => {
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', fontFamily: 'Roboto, sans-serif' }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar sx={{ backgroundColor: '#212529', display: 'flex', justifyContent: 'space-between' }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            MentorConnect
-          </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant="body1" sx={{ color: 'white', fontSize: '1rem', marginRight: '20px' }}>
-              {name} ({userRole})
-            </Typography>
-            <Button
-              onClick={handleLogout}
-              sx={{
-                color: 'white',
-                borderColor: 'white',
-                transition: 'background-color 0.3s, color 0.3s', // Smooth hover effect
-                '&:hover': {
-                  borderColor: 'white',
-                  backgroundColor: '#DC143C',
-                },
-              }}
+      <HideOnScroll>
+        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+          <Toolbar sx={{ backgroundColor: '#212529', display: 'flex', justifyContent: 'space-between' }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ display: { sm: 'none' } }}
             >
-              <ExitToApp sx={{ mr: 1 }} />
-              Logout
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              MentorConnect
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography variant="body1" sx={{ color: 'white', fontSize: '1rem', marginRight: '20px' }}>
+                {name} ({userRole})
+              </Typography>
+              <Button
+                onClick={handleLogout}
+                sx={{
+                  color: 'white',
+                  borderColor: 'white',
+                  transition: 'background-color 0.3s, color 0.3s', // Smooth hover effect
+                  '&:hover': {
+                    borderColor: 'white',
+                    backgroundColor: '#DC143C',
+                  },
+                }}
+              >
+                <ExitToApp sx={{ mr: 1 }} />
+                Logout
+              </Button>
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
       {/* Toggle Button for Mobile View */}
-      <IconButton
+      {/* <IconButton
         color="black"
         aria-label="open drawer"
         edge="start"
@@ -340,7 +355,7 @@ const Layout = ({ children }) => {
         sx={{ display: { sm: 'none' }, position: 'fixed', top: 16, left: 10, zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
         <MenuIcon />
-      </IconButton>
+      </IconButton> */}
 
       {/* Permanent Drawer for Desktop */}
       <Drawer

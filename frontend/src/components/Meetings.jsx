@@ -55,7 +55,7 @@ const Meetings = () => {
         <Typography variant="h4" component="h1" gutterBottom>
           Meeting Schedules
         </Typography>
-        {(userRole === 'mentee' || userRole === 'mentor') && (
+        {/* {(userRole === 'mentee' || userRole === 'mentor') && (
           <Button
             variant="contained"
             color="primary"
@@ -64,7 +64,7 @@ const Meetings = () => {
           >
             Schedule New Meeting
           </Button>
-        )}
+        )} */}
         <MeetingForm
           open={openModal}
           onClose={() => setOpenModal(false)}

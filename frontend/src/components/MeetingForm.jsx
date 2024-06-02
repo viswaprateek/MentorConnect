@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Modal } from '@mui/material';
+import { Modal, Button, Form, Card } from 'react-bootstrap';
 import { createMeeting } from '../api';
 import { useAuth } from '../AuthContext';
 import { useMentee } from '../MenteeContext';
+import { FaPlus } from 'react-icons/fa';
 
-const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  p: 4,
-};
-
-const MeetingsForm = ({ open, onClose, onMeetingAdded }) => {
+const MeetingsForm = ({ onMeetingAdded }) => {
   const { userId: mentorId } = useAuth();
   const { menteeId } = useMentee();
   const [meetingData, setMeetingData] = useState({ date: '', time: '', venue: '' });
+  const [show, setShow] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,52 +29,83 @@ const MeetingsForm = ({ open, onClose, onMeetingAdded }) => {
       const savedMeeting = await createMeeting(newMeeting);
       onMeetingAdded(savedMeeting);
       setMeetingData({ date: '', time: '', venue: '' });
-      onClose();
+      handleClose();
     } catch (error) {
       console.error('Error scheduling meeting:', error);
     }
   };
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <Modal open={open} onClose={onClose}>
-      <Box sx={modalStyle}>
-        <h2>Schedule Meeting</h2>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Date"
-            name="date"
-            type="date"
-            value={meetingData.date}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            required
-          />
-          <TextField
-            label="Time"
-            name="time"
-            type="time"
-            value={meetingData.time}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            required
-          />
-          <TextField
-            label="Venue"
-            name="venue"
-            value={meetingData.venue}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            required
-          />
-          <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
-            Schedule
-          </Button>
-        </form>
-      </Box>
-    </Modal>
+    <>
+      <Card 
+        style={{ 
+          width: '200px', 
+          height: '200px', 
+          border: '2px dotted #000', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          cursor: 'pointer', 
+          margin: 'auto' 
+        }} 
+        onClick={handleShow}
+      >
+        <Card.Body className="d-flex align-items-center justify-content-center">
+          <FaPlus style={{ fontSize: '40px' }} />
+        </Card.Body>
+      </Card>
+
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Schedule Meeting</Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Body>
+            <Form.Group controlId="meetingDate">
+              <Form.Label>Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="date"
+                value={meetingData.date}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="meetingTime" className="mt-3">
+              <Form.Label>Time</Form.Label>
+              <Form.Control
+                type="time"
+                name="time"
+                value={meetingData.time}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="meetingVenue" className="mt-3">
+              <Form.Label>Venue</Form.Label>
+              <Form.Control
+                type="text"
+                name="venue"
+                value={meetingData.venue}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button type="submit" variant="primary"> (viswa add functionality to this)
+              Schedule
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+    </>
   );
 };
 

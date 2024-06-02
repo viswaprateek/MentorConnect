@@ -2,7 +2,6 @@ import React from 'react';
 import { useAuth } from '../AuthContext'; // Import useAuth hook
 import { updatePermissionStatus } from '../api';
 import './PermissionsList.css'; // Import the custom CSS
-import Header from '../landing page/Header';
 const PermissionsList = ({ permissions, onStatusChange }) => {
   const { userRole } = useAuth(); // Get user role from AuthContext
 

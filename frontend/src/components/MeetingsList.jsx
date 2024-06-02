@@ -37,7 +37,7 @@ const MeetingsList = ({ meetings, onMeetingUpdated, onMeetingDeleted }) => {
     <div className="meetings-list">
       <div className="meetings-row upcoming-meetings">
         <h2>Upcoming Meetings</h2>
-        <div className="meetings-list">
+        <div className="meetings-list-row">
           {upcomingMeetings.map((meeting) => (
             <div className="meeting-card" key={meeting._id}>
               <h3>{meeting.venue}</h3>
@@ -66,7 +66,7 @@ const MeetingsList = ({ meetings, onMeetingUpdated, onMeetingDeleted }) => {
       </div>
       <div className="meetings-row past-meetings">
         <h2>Past Meetings</h2>
-        <div className="meetings-list">
+        <div className="meetings-list-row">
           {pastMeetings.map((meeting, index) => (
             <div className="meeting-card" key={meeting._id}>
               <h3>{meeting.venue}</h3>
