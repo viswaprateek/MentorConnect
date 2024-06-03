@@ -256,6 +256,7 @@ const Layout = ({ children }) => {
           <LockIcon sx={{ mr: 2 }} />
           <ListItemText primary="Change Password" sx={{ fontSize: '16px' }} />
         </ListItem>
+        {userRole === 'mentor' && (
         <ListItem
           button
           component={Link}
@@ -272,6 +273,7 @@ const Layout = ({ children }) => {
           <PersonIcon sx={{ mr: 2 }} />
           <ListItemText primary="My Profile" sx={{ fontSize: '16px' }} />
         </ListItem>
+      )}
       </List>
 
       <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem' }}>

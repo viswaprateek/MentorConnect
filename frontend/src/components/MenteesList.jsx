@@ -87,7 +87,7 @@ const MenteeCard = ({ mentee, onClick }) => {
       onClick={onClick}
       style={{ cursor: 'pointer', borderRadius: '8px' }}
     >
-      <Card.Img variant="top" src={mentee.photoLink} alt={`${mentee.name}'s profile`} style={{ height: '200px', objectFit: 'cover' }} />
+      <Card.Img variant="top" src={mentee.photoLink} alt={`${mentee.name}'s profile`} style={{ height: '250px', objectFit: 'cover' }} />
       <Card.Body>
         <Card.Title>{mentee.name}</Card.Title>
         <Card.Text>Registration: {mentee.registrationNumber}</Card.Text>

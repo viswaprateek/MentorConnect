@@ -99,7 +99,7 @@ const MeetingsForm = ({ onMeetingAdded }) => {
             <Button variant="secondary" onClick={handleClose}>
               Cancel
             </Button>
-            <Button type="submit" variant="primary"> (viswa add functionality to this)
+            <Button type="submit" variant="primary"> 
               Schedule
             </Button>
           </Modal.Footer>
