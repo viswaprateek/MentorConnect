@@ -91,7 +91,7 @@ console.log(authenticated)
         <Route path="/mentees/mentor/:mentorId/year/:year" element={<MenteesList />} />
 
         <Route path="/menteedashboard/:id" element={<MenteeDashboard />} />
-        <Route path="/academics" element={<Academics />} />
+        <Route path="/academics/:id" element={<Academics />} />
         <Route path="/nonacademics" element={<Nonacademics />} />
         <Route path="/remarks" element={<MentorRemarks />} />
 

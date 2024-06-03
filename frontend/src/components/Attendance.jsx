@@ -7,8 +7,9 @@ import './Attendance.css'; // Import the CSS file
 import { useParams } from 'react-router-dom';
 const Attendance = () => {
   const params = useParams()
-  console.log(params.id)
+  console.log('hi',params.id)
   const { menteeId } = useMentee();
+  console.log(menteeId,params);
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
