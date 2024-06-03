@@ -3,26 +3,13 @@ import { useParams } from 'react-router-dom';
 import { getAcedamicsByUserId } from '../api'; // Ensure the path is correct
 import { useMentee } from '../MenteeContext';
 import Layout from './Layout';
-
-import {
-  Container,
-  Typography,
-  CircularProgress,
-  Alert,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Box,
-} from '@mui/material';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Academics = () => {
   const { menteeId } = useMentee();
   const params = useParams();
   const [academicDetails, setAcademicDetails] = useState(null);
+  const [selectedSemester, setSelectedSemester] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -40,12 +27,19 @@ const Academics = () => {
     fetchAcademicDetails();
   }, [params.id]);
 
+  const handleSemesterChange = (event) => {
+    const semester = event.target.value;
+    setSelectedSemester(semester);
+  };
+
   if (loading) {
     return (
       <Layout>
-        <Container sx={{ textAlign: 'center', marginTop: 5 }}>
-          <CircularProgress />
-        </Container>
+        <div className="container text-center mt-5">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
       </Layout>
     );
   }
@@ -53,9 +47,11 @@ const Academics = () => {
   if (error) {
     return (
       <Layout>
-        <Container sx={{ textAlign: 'center', marginTop: 5 }}>
-          <Alert severity="error">{error}</Alert>
-        </Container>
+        <div className="container text-center mt-5">
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        </div>
       </Layout>
     );
   }
@@ -63,62 +59,82 @@ const Academics = () => {
   if (!academicDetails) {
     return (
       <Layout>
-        <Container sx={{ textAlign: 'center', marginTop: 5 }}>
-          <Typography>No academic details available.</Typography>
-        </Container>
+        <div className="container text-center mt-5">
+          <p>No academic details available.</p>
+        </div>
       </Layout>
     );
   }
 
+  const selectedResult = academicDetails[0].results.find(
+    (result) => result.semester.toString() === selectedSemester
+  );
+
   return (
     <Layout>
-      <Container sx={{ padding: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          Academic Details
-        </Typography>
-        {academicDetails.map((academicDetail, index) => (
-          <Box key={index} sx={{ mb: 4 }}>
-            <Typography variant="h5" gutterBottom>
-              Mentee: {academicDetail.studentName}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-              CGPA: {academicDetail.CGPA}
-            </Typography>
-            {academicDetail.results && academicDetail.results.map((result, resultIndex) => (
-              <Box key={resultIndex} sx={{ mb: 3 }}>
-                <Typography variant="h6" gutterBottom>
-                  Semester {result.semester}
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                  Semester GPA: {result.semesterGPA}
-                </Typography>
-                <TableContainer component={Paper}>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Subject</TableCell>
-                        <TableCell>Internal 1</TableCell>
-                        <TableCell>Internal 2</TableCell>
-                        <TableCell>Avg Internal</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {result.subjects.map((subject, subIndex) => (
-                        <TableRow key={subIndex}>
-                          <TableCell>{subject.subject}</TableCell>
-                          <TableCell>{subject.internal1}</TableCell>
-                          <TableCell>{subject.internal2}</TableCell>
-                          <TableCell>{subject.avgInternal}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Box>
-            ))}
-          </Box>
-        ))}
-      </Container>
+      <div className="container py-5">
+        <div className="card mb-4 shadow-sm">
+          <div className="card-body">
+            <h2 className="card-title">Academic Details</h2>
+            <h4 className="card-subtitle mb-2 text-muted">
+              Mentee: {academicDetails[0].studentName}
+            </h4>
+            <h5 className="card-subtitle mb-4 text-muted">CGPA: {academicDetails[0].CGPA}</h5>
+
+            <div className="mb-4">
+              <label htmlFor="semester-select" className="form-label">
+                Select Semester
+              </label>
+              <select
+                id="semester-select"
+                className="form-select"
+                value={selectedSemester || ''}
+                onChange={handleSemesterChange}
+              >
+                <option value="" disabled>
+                  Choose a semester
+                </option>
+                {academicDetails[0].results.map((result, index) => (
+                  <option key={index} value={result.semester}>
+                    Semester {result.semester}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {selectedResult && (
+              <div className="card mt-4">
+                <div className="card-body">
+                  <h5 className="card-title">Semester {selectedResult.semester}</h5>
+                  <p className="card-text">Semester GPA: {selectedResult.semesterGPA}</p>
+                  <div className="table-responsive">
+                    <table className="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Subject</th>
+                          <th>Internal 1</th>
+                          <th>Internal 2</th>
+                          <th>Avg Internal</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {selectedResult.subjects.map((subject, subIndex) => (
+                          <tr key={subIndex}>
+                            <td>{subject.subject}</td>
+                            <td>{subject.internal1}</td>
+                            <td>{subject.internal2}</td>
+                            <td>{subject.avgInternal}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };
