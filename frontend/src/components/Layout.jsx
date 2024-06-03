@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
   const { userRole, name, logout } = useAuth();
   const navigate = useNavigate();
   const { menteeId } = useMentee(); // Access menteeId from the context
-
+  console.log('ji',menteeId)
   const [anchorEl, setAnchorEl] = useState(null); // State to manage the menu anchor element
   const [mobileOpen, setMobileOpen] = useState(false); // State to manage the mobile drawer
 
@@ -156,7 +156,7 @@ const Layout = ({ children }) => {
               variant="text"
               fullWidth
               component={Link}
-              to="/academics"
+              to={`/academics/${menteeId}`}
               sx={{
                 textAlign: 'left',
                 color: 'white',

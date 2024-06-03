@@ -2,11 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
-const attendanceRoutes =require('./routes/attendanceRoutes')
+const attendanceRoutes =require('./routes/attendanceRoutes');
 const menteeRoutes = require('./routes/menteeRoutes');
 const mentorRoutes = require('./routes/mentorRoutes');
-const permissionRoutes=require('./routes/permissionsRoutes')
-const meetingsRoutes=require('./routes/meetingsRoutes')
+const permissionRoutes=require('./routes/permissionsRoutes');
+const meetingsRoutes=require('./routes/meetingsRoutes');
+const studentRoutes = require('./routes/studentRoutes');
 
 require('dotenv').config();
 
@@ -24,8 +25,8 @@ app.use('/mentors', mentorRoutes);
 app.use('/attendance', attendanceRoutes);
 app.use('/permissions', permissionRoutes);
 app.use('/meetings',meetingsRoutes)
-
-
+app.use('/students', studentRoutes);
+app.use('/academics', studentRoutes);
 
 
 module.exports = app;

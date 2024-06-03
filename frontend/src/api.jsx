@@ -5,6 +5,7 @@ import axios from 'axios';
 
 // const baseURL = ;
 // Create an instance of the Axios HTTP client with a base URL and common headers
+
 export const api = axios.create({
   // baseURL: 'http://localhost:8080', // The base URL for API requests
   baseURL: 'http://localhost:4000', // The base URL for API requests
@@ -149,6 +150,15 @@ export const getAttendanceByUserId = async (userId) => {
   }
 };
 
+export const getAcedamicsByUserId = async (userId) => {
+  try {
+    const response = await api.get(`/academics/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching attendance data:', error);
+    throw error;
+  }
+};
 
 export const changePassword = (id, currentPassword, newPassword,role) => 
   api.put(`/mentees/changepassword/${id}`, { currentPassword, newPassword,role });
