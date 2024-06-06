@@ -1,24 +1,88 @@
-/* MenteesList.css */
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
-/* Keyframes for fade-in animation */
+.slider-container {
+  display: flex;
+  overflow: hidden;
+  width: 80%;
+}
+
+.slider-item {
+  min-width: 33.33%;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slider-button {
+  background-color: #444141;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.slider-button:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #444141;
+
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.mentee-card {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mentee-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mentee-card-img {
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
-}
-
-/* Animation class */
-.fade-in {
-  opacity: 0; /* Initial state */
-  animation: fadeIn 1s ease-out forwards; /* Apply the animation */
-}
-
-/* Visible class to trigger animation */
-.fade-in.visible {
-  opacity: 1;
 }

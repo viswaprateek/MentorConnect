@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
+import { Container, Spinner, Card } from 'react-bootstrap';
 import { getMenteesByMentorAndYear } from '../api';
 import MiniLayout from './MiniLayout';
 import { useMentee } from '../MenteeContext';
 import { useAuth } from '../AuthContext';
-import { useInView } from 'react-intersection-observer';
 import './MenteesList.css';
-
+ 
 const MenteesList = () => {
   const { year } = useParams();
   const navigate = useNavigate();
@@ -15,7 +14,8 @@ const MenteesList = () => {
   const { userId: mentorId } = useAuth();
   const [mentees, setMentees] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [currentSlide, setCurrentSlide] = useState(0);
+ 
   useEffect(() => {
     const fetchMentees = async () => {
       try {
@@ -27,17 +27,25 @@ const MenteesList = () => {
         setLoading(false);
       }
     };
-
+ 
     if (mentorId && year) {
       fetchMentees();
     }
   }, [mentorId, year]);
-
+ 
   const handleMenteeClick = (menteeId) => {
     setMenteeId(menteeId);
     navigate(`/menteedashboard/${menteeId}`);
   };
-
+ 
+  const handlePrevClick = () => {
+    setCurrentSlide((prevSlide) => Math.max(prevSlide - 1, 0));
+  };
+ 
+  const handleNextClick = () => {
+    setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, Math.ceil(mentees.length / 3) - 1));
+  };
+ 
   if (loading) {
     return (
       <MiniLayout>
@@ -47,47 +55,52 @@ const MenteesList = () => {
       </MiniLayout>
     );
   }
-
+ 
+  const displayedMentees = mentees.slice(currentSlide * 3, currentSlide * 3 + 3);
+  const totalSlides = Math.ceil(mentees.length / 3);
+ 
   return (
     <MiniLayout>
       <Container>
         {mentees.length === 0 ? (
           <h5 className="text-center my-5">No mentees present.</h5>
         ) : (
-          <Row className="gy-4">
-            {mentees.map((mentee) => (
-              <Col key={mentee._id} xs={12} sm={6} md={4} lg={3}>
-                <MenteeCard mentee={mentee} onClick={() => handleMenteeClick(mentee._id)} />
-              </Col>
-            ))}
-          </Row>
+          <>
+            <div className="slider">
+              <button onClick={handlePrevClick} disabled={currentSlide === 0} className="slider-button">
+                &lt;
+              </button>
+              <div className="slider-container">
+                {displayedMentees.map((mentee) => (
+                  <div key={mentee._id} className="slider-item">
+                    <MenteeCard mentee={mentee} onClick={() => handleMenteeClick(mentee._id)} />
+                  </div>
+                ))}
+              </div>
+              <button onClick={handleNextClick} disabled={currentSlide === totalSlides - 1} className="slider-button">
+                &gt;
+              </button>
+            </div>
+            <div className="slider-dots">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <span
+                  key={index}
+                  className={`dot ${index === currentSlide ? 'active' : ''}`}
+                  onClick={() => setCurrentSlide(index)}
+                ></span>
+              ))}
+            </div>
+          </>
         )}
       </Container>
     </MiniLayout>
   );
 };
-
+ 
 const MenteeCard = ({ mentee, onClick }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      document.getElementById(mentee._id).classList.add('visible');
-    }
-  }, [inView, mentee._id]);
-
   return (
-    <Card
-      ref={ref}
-      id={mentee._id}
-      className={`fade-in ${inView ? 'visible' : ''} text-center shadow-sm`}
-      onClick={onClick}
-      style={{ cursor: 'pointer', borderRadius: '8px' }}
-    >
-      <Card.Img variant="top" src={mentee.photoLink} alt={`${mentee.name}'s profile`} style={{ height: '250px', objectFit: 'cover' }} />
+    <Card className="fade-in text-center shadow-sm mentee-card" onClick={onClick}>
+      <Card.Img variant="top" src={mentee.photoLink} alt={`${mentee.name}'s profile`} className="mentee-card-img" />
       <Card.Body>
         <Card.Title>{mentee.name}</Card.Title>
         <Card.Text>Registration: {mentee.registrationNumber}</Card.Text>
@@ -97,5 +110,5 @@ const MenteeCard = ({ mentee, onClick }) => {
     </Card>
   );
 };
-
+ 
 export default MenteesList;
