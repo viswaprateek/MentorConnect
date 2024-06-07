@@ -5,11 +5,10 @@ import { getAttendanceByUserId } from '../api'; // Importing the function from a
 import Layout from './Layout';
 import './Attendance.css'; // Import the CSS file
 import { useParams } from 'react-router-dom';
+
 const Attendance = () => {
-  const params = useParams()
-  console.log('hi',params.id)
+  const params = useParams();
   const { menteeId } = useMentee();
-  console.log(menteeId,params);
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -60,8 +59,8 @@ const Attendance = () => {
 
     const totalAttended = sumClasses(attendanceData, 'attended');
     const totalClasses = sumClasses(attendanceData, 'totalClasses');
-    const adjustedTotalAttended = totalAttended + (diffDays*6);
-    const adjustedTotalClasses = totalClasses + (diffDays*6);
+    const adjustedTotalAttended = totalAttended + (diffDays * 6);
+    const adjustedTotalClasses = totalClasses + (diffDays * 6);
     const adjustedPercentage = adjustedTotalClasses > 0 ? (adjustedTotalAttended / adjustedTotalClasses) * 100 : 0;
 
     setSelectedDate(event.target.value);
@@ -83,7 +82,8 @@ const Attendance = () => {
         <h3 className="attendance-percentage">Attendance Percentage: {attendancePercentage.toFixed(2)}%</h3>
         <div className="attendance-content">
           <div className="gauge-chart-container">
-            <GaugeChart id="attendance-gauge"
+            <GaugeChart
+              id="attendance-gauge"
               nrOfLevels={20}
               colors={["#FF0000", "#FFBB28", "#00FF00"]}
               arcWidth={0.3}
@@ -165,25 +165,20 @@ const Attendance = () => {
             </table>
           </div>
         </div>
-        <div>
-          <br />
-        </div>
-        <div className="classes-needed" style={{ backgroundColor: '#f9f9f9', padding: '10px', borderRadius: '5px' }}>
+        <div className="classes-needed">
           {classesNeeded > 0
             ? <h5>You need to attend {classesNeeded} more classes to meet the 75% sem attendance requirement.</h5>
             : <p>No need to attend more classes. You have met the 75% attendance requirement.</p>}
         </div>
-        <div className="date-input-container" style={{ marginTop: '20px', padding: '10px', backgroundColor: '#f9f9f9', borderRadius: '5px', textAlign: 'center' }}>
-          <label htmlFor="date-input" style={{ marginRight: '10px', fontWeight: 'bold' }}>Select a Date to which attendance percentage to be calculated: </label>
+        <div className="date-input-container">
+          <label htmlFor="date-input">Select a Date to which attendance percentage to be calculated: </label>
           <input
             type="date"
             id="date-input"
             value={selectedDate || ''}
             onChange={handleDateChange}
-            style={{ padding: '5px', borderRadius: '3px', border: '1px solid #ccc' }}
           />
         </div>
-        
       </div>
     </Layout>
   );
