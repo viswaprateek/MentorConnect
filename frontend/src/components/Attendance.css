@@ -1,59 +1,92 @@
 .attendance-container {
-    margin-top: 40px;
-    text-align: center;
-  }
-  
-  .attendance-percentage {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .attendance-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .gauge-chart-container {
-    flex: 1 1 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .gauge-chart {
-    width: 100%;
-    max-width: 250px; /* Reduced size for the gauge chart */
-    height: auto;
-  }
-  
-  .attendance-table-container {
-    flex: 1 1 300px;
-    overflow-x: auto;
-  }
-  
-  .attendance-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .attendance-table th, .attendance-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .attendance-table th {
-    background-color: #f2f2f2;
-    text-align: left;
-  }
-  
-  .attendance-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .attendance-table tr:hover {
-    background-color: #ddd;
-  }
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.attendance-percentage {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3f3d3d;
+}
+
+.attendance-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.gauge-chart-container {
+  width: 100%;
+  max-width: 600px; /* Increase this value to make the chart larger */
+}
+
+.attendance-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1px 0;
+  font-size: 16px;
+}
+
+.attendance-table th,
+.attendance-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.attendance-table th {
+  background-color: #3f3d3d;
+  color: white;
+  font-weight: bold;
+}
+
+.attendance-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.attendance-table tr:hover {
+  background-color: #ddd;
+}
+
+.classes-needed {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 18px;
+  color: #3f3d3d;
+}
+
+.date-input-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#date-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+h5 {
+  margin: 0;
+}
