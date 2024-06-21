@@ -1,0 +1,24 @@
+.mentee-card {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .mentee-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .mentee-card-img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .custom-checkbox .form-check-input {
+    width: 2em;
+    height: 2em;
+    
+  }
+  
+  .custom-checkbox .form-check-label {
+    margin-left: 0.5em;
+    font-weight: 500;
+  }
+  

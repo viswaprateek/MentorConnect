@@ -51,4 +51,35 @@ const deleteMeeting = async (req, res) => {
   }
 };
 
-module.exports = { getMeetings, scheduleMeeting, updateMeeting, deleteMeeting };
+
+// Schedule meetings for multiple mentees
+const scheduleMultipleMeeting = async (req, res) => {
+  const { mentorId, date, time, venue } = req.body;
+  const { menteeIds } = req.body;
+
+  try {
+    const meetings = menteeIds.map(async (menteeId) => {
+      const newMeeting = new Meeting({
+        mentorId,
+        menteeId,
+        date,
+        time,
+        venue,
+        status: 'upcoming',
+      });
+      return await newMeeting.save();
+    });
+
+    const savedMeetings = await Promise.all(meetings);
+    res.status(201).json(savedMeetings);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = { scheduleMeeting };
+
+
+module.exports = { getMeetings, scheduleMeeting, updateMeeting, deleteMeeting, scheduleMultipleMeeting };
+
+

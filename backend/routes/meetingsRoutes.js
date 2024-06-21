@@ -14,4 +14,8 @@ router.put('/:id', updateMeeting);
 // Delete a meeting
 router.delete('/:id', deleteMeeting);
 
+// Schedule a new meeting for multiple mentees
+router.post('/multiple', scheduleMeeting);
+
+
 module.exports = router;

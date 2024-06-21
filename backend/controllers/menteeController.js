@@ -31,7 +31,33 @@ exports.registerMentee = async (req, res) => {
     sem6Gpa,
     sem7Gpa,
     sem8Gpa,
-    photoLink // Add this line
+    photoLink, // Add this line
+    // New fields
+    FatherName,
+    MotherName,
+    PlaceOfBirth,
+    Gender,
+    DOB,
+    MaritalStatus,
+    Caste,
+    CasteName,
+    JoinType,
+    DOJ,
+    DOR,
+    RelieveType,
+    RelieveReason,
+    IsPH,
+    PHType,
+    IsLateral,
+    ReserveCategory,
+    UIDNo,
+    UIDEnrollNo,
+    IsLocal,
+    IsEBC,
+    IsMinority,
+    ParentIncome,
+    Mark1,
+    Mark2
   } = req.body;
 
   try {
@@ -74,7 +100,33 @@ exports.registerMentee = async (req, res) => {
       sem6Gpa,
       sem7Gpa,
       sem8Gpa,
-      photoLink // Include this line
+      photoLink, // Include this line
+      // New fields
+      FatherName,
+      MotherName,
+      PlaceOfBirth,
+      Gender,
+      DOB,
+      MaritalStatus,
+      Caste,
+      CasteName,
+      JoinType,
+      DOJ,
+      DOR,
+      RelieveType,
+      RelieveReason,
+      IsPH,
+      PHType,
+      IsLateral,
+      ReserveCategory,
+      UIDNo,
+      UIDEnrollNo,
+      IsLocal,
+      IsEBC,
+      IsMinority,
+      ParentIncome,
+      Mark1,
+      Mark2
     });
 
     await mentee.save();
@@ -84,6 +136,7 @@ exports.registerMentee = async (req, res) => {
     res.status(500).json({ message: 'Error registering mentee', error: error.message });
   }
 };
+
 
 // exports.getMenteesByYear = async (req, res) => {
 //   const { year } = req.params;

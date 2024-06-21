@@ -45,6 +45,33 @@ const AdminDashboard = () => {
     mentorName: '',
     mentorRegistrationNumber: '',
     photoFile: null, // Change photoLink to photoFile
+    // New fields set to null by default
+    FatherName: null,
+    MotherName: null,
+    PlaceOfBirth: null,
+    Gender: null,
+    DOB: null,
+    MaritalStatus: null,
+    BloodGroup: null,
+    Caste: null,
+    CasteName: null,
+    JoinType: null,
+    DOJ: null,
+    DOR: null,
+    RelieveType: null,
+    RelieveReason: null,
+    IsPH: null,
+    PHType: null,
+    IsLateral: null,
+    ReserveCategory: null,
+    UIDNo: null,
+    UIDEnrollNo: null,
+    IsLocal: null,
+    IsEBC: null,
+    IsMinority: null,
+    ParentIncome: null,
+    Mark1: null,
+    Mark2: null
   });
 
   const [loading, setLoading] = useState(false);
@@ -74,7 +101,6 @@ const AdminDashboard = () => {
         formData.append('file', userDetails.photoFile);
         formData.append('upload_preset', 'x5gcrzk2'); // Replace with your Cloudinary upload preset
         const response = await axios.post(
-          
           'https://api.cloudinary.com/v1_1/dtubfmvvq/image/upload', // Replace with your Cloudinary cloud name
           formData
         );
@@ -84,6 +110,33 @@ const AdminDashboard = () => {
       const userDetailsWithPhoto = {
         ...userDetails,
         photoLink, // Add photoLink to the user details
+        // Ensure new fields are included
+        FatherName: userDetails.FatherName,
+        MotherName: userDetails.MotherName,
+        PlaceOfBirth: userDetails.PlaceOfBirth,
+        Gender: userDetails.Gender,
+        DOB: userDetails.DOB,
+        MaritalStatus: userDetails.MaritalStatus,
+        BloodGroup: userDetails.BloodGroup,
+        Caste: userDetails.Caste,
+        CasteName: userDetails.CasteName,
+        JoinType: userDetails.JoinType,
+        DOJ: userDetails.DOJ,
+        DOR: userDetails.DOR,
+        RelieveType: userDetails.RelieveType,
+        RelieveReason: userDetails.RelieveReason,
+        IsPH: userDetails.IsPH,
+        PHType: userDetails.PHType,
+        IsLateral: userDetails.IsLateral,
+        ReserveCategory: userDetails.ReserveCategory,
+        UIDNo: userDetails.UIDNo,
+        UIDEnrollNo: userDetails.UIDEnrollNo,
+        IsLocal: userDetails.IsLocal,
+        IsEBC: userDetails.IsEBC,
+        IsMinority: userDetails.IsMinority,
+        ParentIncome: userDetails.ParentIncome,
+        Mark1: userDetails.Mark1,
+        Mark2: userDetails.Mark2
       };
 
       if (userDetails.role === 'mentee') {
@@ -120,6 +173,33 @@ const AdminDashboard = () => {
         mentorName: '',
         mentorRegistrationNumber: '',
         photoFile: null, // Reset this field as well
+        // Reset new fields
+        FatherName: null,
+        MotherName: null,
+        PlaceOfBirth: null,
+        Gender: null,
+        DOB: null,
+        MaritalStatus: null,
+        BloodGroup: null,
+        Caste: null,
+        CasteName: null,
+        JoinType: null,
+        DOJ: null,
+        DOR: null,
+        RelieveType: null,
+        RelieveReason: null,
+        IsPH: null,
+        PHType: null,
+        IsLateral: null,
+        ReserveCategory: null,
+        UIDNo: null,
+        UIDEnrollNo: null,
+        IsLocal: null,
+        IsEBC: null,
+        IsMinority: null,
+        ParentIncome: null,
+        Mark1: null,
+        Mark2: null
       }); // Reset form
     } catch (error) {
       console.error('Failed to register user:', error);
@@ -194,18 +274,18 @@ const AdminDashboard = () => {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-  <TextField
-    variant="outlined"
-    fullWidth
-    label=""
-    name="photo"
-    type="file"
-    onChange={handleFileChange}
-    InputProps={{
-      style: { backgroundColor: 'rgb(16, 144, 230,0.2)' },
-    }}
-  />
-</Grid>
+              <TextField
+                variant="outlined"
+                fullWidth
+                label=""
+                name="photo"
+                type="file"
+                onChange={handleFileChange}
+                InputProps={{
+                  style: { backgroundColor: 'rgb(16, 144, 230,0.2)' },
+                }}
+              />
+            </Grid>
 
             {userDetails.role === 'mentee' && (
               <>
