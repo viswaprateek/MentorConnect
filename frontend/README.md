@@ -1,4 +1,4 @@
-# Freelancing Platform
+# Mentor-Connect
 
 Commands to Run the frontend:
 
