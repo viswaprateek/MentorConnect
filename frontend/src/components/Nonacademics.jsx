@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
+import AddActivityForm from './AddActivityForm';
 
+import './Nonacademics.css'; // Ensure the correct path and format for CSS import
+import Layout from './Layout';
 function Nonacademics() {
   return (
-    <div>Nonacademics</div>
-  )
+    <Layout>
+    <div className="container">
+      <AddActivityForm />
+      <hr />
+
+    </div>
+    </Layout>
+  );
 }
 
-export default Nonacademics
+export default Nonacademics;

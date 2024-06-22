@@ -235,7 +235,26 @@ export const deleteMeeting = async (id) => {
   }
 };
 
+export const addActivity =async(data)=>{
+  try {
+    console.log('hi',data)
+    const response = await api.post(`/nonacademics`, data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating academics:', error);
+    throw error;
+  }
+}
 
+export const getallActivity = async(menteeId)=>{
+  try {
+    const response = await api.get(`/nonacademics/${menteeId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching activities:', error);
+    throw error;
+  }
+};
 
 
 //END NEW ROUTES

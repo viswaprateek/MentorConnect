@@ -176,7 +176,7 @@ const Layout = ({ children }) => {
               variant="text"
               fullWidth
               component={Link}
-              to="/nonacademics"
+              to={`/nonacademics/${menteeId}`}
               sx={{
                 textAlign: 'left',
                 backgroundColor: '#212529',

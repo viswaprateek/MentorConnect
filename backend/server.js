@@ -8,7 +8,7 @@ const mentorRoutes = require('./routes/mentorRoutes');
 const permissionRoutes=require('./routes/permissionsRoutes');
 const meetingsRoutes=require('./routes/meetingsRoutes');
 const studentRoutes = require('./routes/studentRoutes');
-
+const nonacademics=require('./routes/activityRoutes')
 require('dotenv').config();
 
 const app = express();
@@ -27,6 +27,6 @@ app.use('/permissions', permissionRoutes);
 app.use('/meetings',meetingsRoutes)
 app.use('/students', studentRoutes);
 app.use('/academics', studentRoutes);
-
+app.use('/nonacademics',nonacademics);
 
 module.exports = app;
