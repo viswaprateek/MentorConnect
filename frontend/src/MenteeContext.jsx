@@ -5,9 +5,10 @@ const MenteeContext = createContext();
 
 export const MenteeProvider = ({ children }) => {
   const [menteeId, setMenteeId] = useState(null);
+  const [selectedMenteeIds, setSelectedMenteeIds] = useState([]);
 
   return (
-    <MenteeContext.Provider value={{ menteeId, setMenteeId }}>
+    <MenteeContext.Provider value={{ menteeId, setMenteeId, selectedMenteeIds, setSelectedMenteeIds }}>
       {children}
     </MenteeContext.Provider>
   );

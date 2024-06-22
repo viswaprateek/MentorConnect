@@ -109,6 +109,35 @@ export const getMenteesByMentorAndYear = async (mentorId, year) => {
   }
 };
 
+// Create a new meeting (supports multiple mentees)
+// export const createMultipleMeeting = async (meetingData) => {
+//   try {
+//     const response = await api.post('/meetings/multiple', meetingData);
+//     return response.data;
+//   } catch (error) {
+//     console.error('Failed to create meeting:', error);
+//     throw error;
+//   }
+// };
+
+// In your api.js or relevant API file
+export const createMultipleMeeting = async (meetingData) => {
+  const response = await api.post('/meetings/multiple', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(meetingData),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to create meeting');
+  }
+
+  return response.json();
+};
+
+
 export const getMenteeById = async (id) => {
   try {
     const response = await api.get(`/mentees/${id}`);
