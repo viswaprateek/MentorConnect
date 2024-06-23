@@ -264,7 +264,27 @@ export const deleteMeeting = async (id) => {
   }
 };
 
+export const addActivity = async (activity) => {
+  try {
+    console.log('hi', activity);
+    const response = await api.post('/nonacademics', activity); // Use activity instead of data
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding activity:', error);
+    throw error;
+  }
+};
 
+export const getAllActivities = async (menteeId) => {
+  try {
+    const response = await api.get(`/nonacademics/${menteeId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching activities:', error);
+    throw error;
+  }
+};
 
 
 //END NEW ROUTES
