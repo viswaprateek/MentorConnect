@@ -264,18 +264,19 @@ export const deleteMeeting = async (id) => {
   }
 };
 
-export const addActivity =async(data)=>{
+export const addActivity = async (activity) => {
   try {
-    console.log('hi',data)
-    const response = await api.post(`/nonacademics`, data);
+    console.log('hi', activity);
+    const response = await api.post('/nonacademics', activity); // Use activity instead of data
+    console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error('Error updating academics:', error);
+    console.error('Error adding activity:', error);
     throw error;
   }
-}
+};
 
-export const getallActivity = async(menteeId)=>{
+export const getAllActivities = async (menteeId) => {
   try {
     const response = await api.get(`/nonacademics/${menteeId}`);
     return response.data;
