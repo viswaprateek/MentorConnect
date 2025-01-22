@@ -8,7 +8,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   // baseURL: 'http://localhost:8080', // The base URL for API requests
-  baseURL: 'http://localhost:4000', // The base URL for API requests
+  baseURL: 'http://34.237.245.247:4000', // The base URL for API requests
   // withCredentials:true,
   headers: {
     'Content-Type': 'application/json', // Common content type header for JSON data
