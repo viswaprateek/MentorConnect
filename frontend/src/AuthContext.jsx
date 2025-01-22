@@ -40,10 +40,10 @@ export function AuthProvider({ children }) {
   }, [cookies, setMenteeId]);
 
   const login = (token, role, id, userName) => {
-    setCookie('accessToken', token, { path: '/', secure: true, sameSite: 'None' });
-    setCookie('role', role, { path: '/', secure: true, sameSite: 'None' });
-    setCookie('userId', id, { path: '/', secure: true, sameSite: 'None' });
-    setCookie('name', userName, { path: '/', secure: true, sameSite: 'None' });
+    setCookie('accessToken', token, { path: '/', secure: true, sameSite: 'None', maxAge: 7 * 24 * 60 * 60 });
+    setCookie('role', role, { path: '/', secure: true, sameSite: 'None', maxAge: 7 * 24 * 60 * 60 });
+    setCookie('userId', id, { path: '/', secure: true, sameSite: 'None', maxAge: 7 * 24 * 60 * 60 });
+    setCookie('name', userName, { path: '/', secure: true, sameSite: 'None', maxAge: 7 * 24 * 60 * 60 });
     setAccessToken(token);
     setAuthenticated(true);
     setUserRole(role);
