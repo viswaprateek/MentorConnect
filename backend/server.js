@@ -13,7 +13,9 @@ const nonacademics=require('./routes/activityRoutes')
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+
+
+app.use(express.static(path.join(__dirname,'../frontend/dist')));
 
 app.use(cors());
 app.use(express.json());
@@ -29,5 +31,10 @@ app.use('/meetings',meetingsRoutes)
 app.use('/students', studentRoutes);
 app.use('/academics', studentRoutes);
 app.use('/nonacademics',nonacademics);
+
+// Catch-all route to handle client-side routing
+app.get('*', (req, res) => {
+res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 module.exports = app;
