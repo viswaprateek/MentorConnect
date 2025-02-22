@@ -22,6 +22,7 @@ To run the frontend, follow these steps:
     ```bash
     npm run dev
     ```
+4. **note: edit baseurl**
 
 ## Backend
 
@@ -41,3 +42,4 @@ To run the backend, follow these steps:
     ```bash
     npm run dev
     ```
+4. **add env (Port,MONGO_URI,JWT_SECRET)**
