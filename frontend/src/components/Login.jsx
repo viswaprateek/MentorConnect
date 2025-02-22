@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useAuth } from "../AuthContext";
 import { loginuser } from "../api";
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import ReCAPTCHA from "react-google-recaptcha";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'; 
 
@@ -12,36 +11,19 @@ function Login() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("mentor");
   const [error, setError] = useState("");
-  const [captchaToken, setCaptchaToken] = useState(null);
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    
-    if (!captchaToken) {
-      setError("Please complete the CAPTCHA");
-      return;
-    }
-
+    e.preventDefault(); // Prevent default form submission
     try {
-      const response = await loginuser(name, password, role, captchaToken);
+      const response = await loginuser(name, password, role);
       const accessToken = response.token;
       const userRole = response.role;
       const id = response.id;
 
       login(accessToken, userRole, id, name);
     } catch (error) {
-      setError(error.response?.data?.message || "Login failed. Please try again.");
-      // Reset CAPTCHA on error
-      if (window.grecaptcha) {
-        window.grecaptcha.reset();
-      }
-      setCaptchaToken(null);
+      setError("Invalid name, password, or role");
     }
-  };
-
-  const handleCaptchaChange = (token) => {
-    console.log("CAPTCHA token:", token); // For debugging
-    setCaptchaToken(token);
   };
 
   return (
@@ -93,13 +75,6 @@ function Login() {
                   required
                 />
               </Form.Group>
-              <div className="mb-3 d-flex justify-content-center">
-                <ReCAPTCHA
-                  sitekey="6Lf7vNsqAAAAALLqNYxWq0CbakT_Y7JRlvGxf1gE"
-                  onChange={handleCaptchaChange}
-                  theme="dark"
-                />
-              </div>
               <Button variant="primary" type="submit" className="w-100">
                 Login
               </Button>
