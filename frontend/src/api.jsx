@@ -1,4 +1,3 @@
-
 // api.jsx
 /* eslint-disable no-useless-catch */
 import axios from 'axios';
@@ -7,8 +6,8 @@ import axios from 'axios';
 // Create an instance of the Axios HTTP client with a base URL and common headers
 
 export const api = axios.create({
-  // baseURL: 'http://localhost:8080', // The base URL for API requests
-  baseURL: 'http://34.237.245.247:4000', // The base URL for API requests
+  baseURL: 'http://localhost:4000', // The base URL for API requests
+  // baseURL: 'http://34.237.245.247:4000', // The base URL for API requests
   // withCredentials:true,
   headers: {
     'Content-Type': 'application/json', // Common content type header for JSON data
@@ -320,9 +319,14 @@ export const signup = async ({ email, password, name, role, bio, skills, portfol
  * @returns {Promise} - A Promise that resolves to the response data if successful.
  * @throws {Error} - An error if the login request fails.
  */
-export const loginuser = async (name, password, role) => {
+export const loginuser = async (name, password, role, captchaToken) => {
   try {
-    const response = await api.post('/user-api/auth/login', { name, password, role });
+    const response = await api.post('/user-api/auth/login', { 
+      name, 
+      password, 
+      role,
+      captchaToken 
+    });
     return response.data;
   } catch (error) {
     throw error;

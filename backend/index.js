@@ -1,4 +1,4 @@
-const app = require('./server'); // Import the configured express app
+const app = require('./server'); 
 const port = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 
