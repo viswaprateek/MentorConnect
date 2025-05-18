@@ -9,7 +9,7 @@ import axios from 'axios';
 export const api = axios.create({
   // baseURL: 'http://localhost:4000', // The base URL for API requests
   // baseURL: 'http://18.60.146.60:5000', // The base URL for API requests
-  baseURL: 'https://mentorconnectbackend-h9w6wggwy-turinghut-temp.vercel.app/',
+  baseURL: 'https://mentorconnectbackend.vercel.app/',
   // withCredentials:true,
   headers: {
     'Content-Type': 'application/json', // Common content type header for JSON data
