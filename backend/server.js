@@ -16,8 +16,14 @@ const app = express();
 
 
 app.use(express.static(path.join(__dirname,'../frontend/dist')));
-
-app.use(cors());
+const corsOptions = {
+    origin: ['https://mentor-connect-alpha.vercel.app', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 200
+  };
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/user-api/auth', userRoutes);
